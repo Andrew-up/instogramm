@@ -18,8 +18,8 @@ import java.util.Map;
     public class JWTProvider{
         public static final Logger LOG = LoggerFactory.getLogger(JWTProvider.class);
 
-public String generateToker(Authentication authentication){
-    User user = (User) authentication.getAuthorities();
+public String generateToken(Authentication authentication){
+    User user = (User) authentication.getPrincipal();
 
     Date now = new Date(System.currentTimeMillis());
 
@@ -70,7 +70,7 @@ public Long getUserIdFromToken(String token){
             .getBody();
     String userId = (String) claims.get("id");
     return Long.parseLong(userId);
-}
+  }
 
-    }
+}
 

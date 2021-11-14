@@ -8,6 +8,8 @@ public class InstogrammApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InstogrammApplication.class, args);
+
+		System.out.println("22222222222222222");
 	}
 
 }
