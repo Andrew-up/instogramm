@@ -12,6 +12,7 @@ public class UserDTO {
     private String firstname;
     @NotEmpty
     private String lastname;
+    private String username;
     private String info;
 
 

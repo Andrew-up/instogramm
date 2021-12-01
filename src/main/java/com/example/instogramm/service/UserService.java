@@ -56,6 +56,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+    public User getCurrentUser(Principal principal){
+        return getUserByPrincipal(principal);
+    }
+
+    public  User getUserById(Long userId){
+        return userRepository.findUserById(userId).orElseThrow(() -> new UsernameNotFoundException("user not found"));
+    }
     public User getUserByPrincipal(Principal principal) {
         String username = principal.getName();
         return userRepository.findUserByUsername(username)

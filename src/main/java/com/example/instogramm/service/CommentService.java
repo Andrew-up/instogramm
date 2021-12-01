@@ -50,7 +50,7 @@ public class CommentService {
         Comment comment = new Comment();
         comment.setPost(post);
         comment.setUserId(user.getId());
-        comment.setUsername(commentDTO.getUsername());
+        comment.setUsername(user.getUsername());
         comment.setMessage(commentDTO.getMessage());
 
         LOG.info("Create new comment for post:{}", post.getId());

@@ -57,7 +57,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     public String GetJWTFromRequest(HttpServletRequest request){
         String header = request.getHeader(SecutiryConstants.HEADER_STRING);
         if(StringUtils.hasText(header)&&header.startsWith(SecutiryConstants.TOKEN_PREFIX)){
-            return header.split("")[1];
+            return header.split(" ")[1];
         }
         return null;
 
