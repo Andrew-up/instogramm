@@ -2,7 +2,7 @@ package com.example.instogramm.controller;
 
 import com.example.instogramm.dto.UserDTO;
 import com.example.instogramm.entity.User;
-import com.example.instogramm.pacade.UserFacade;
+import com.example.instogramm.facade.UserFacade;
 import com.example.instogramm.service.UserService;
 import com.example.instogramm.validators.ResponseErrorValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +38,6 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserProfile(@PathVariable("userId") String userId) {
         User user = userService.getUserById(Long.parseLong(userId));
         UserDTO userDTO = userFacade.userToUserDTO(user);
-
-
 
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
 

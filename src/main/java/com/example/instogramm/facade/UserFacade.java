@@ -1,4 +1,4 @@
-package com.example.instogramm.pacade;
+package com.example.instogramm.facade;
 
 
 import com.example.instogramm.dto.UserDTO;
