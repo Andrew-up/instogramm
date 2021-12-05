@@ -30,10 +30,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private ConfigUserDetailsService configUserDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         try {
-            String jwt = GetJWTFromRequest(request);
+            String jwt = getJWTFromRequest(httpServletRequest);
             if(StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)) {
                 Long userid = jwtProvider.getUserIdFromToken(jwt);
                 User user = configUserDetailsService.loadUserById(userid);
@@ -41,7 +41,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken authentication  = new UsernamePasswordAuthenticationToken(
                         user,null, Collections.emptyList()
                 );
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -50,13 +50,13 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             LOG.error("Can not set user authentication");
         }
 
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(httpServletRequest,response);
 
     }
 
-    public String GetJWTFromRequest(HttpServletRequest request){
+    private String getJWTFromRequest(HttpServletRequest request){
         String header = request.getHeader(SecutiryConstants.HEADER_STRING);
-        if(StringUtils.hasText(header)&&header.startsWith(SecutiryConstants.TOKEN_PREFIX)){
+        if(StringUtils.hasText(header) && header.startsWith(SecutiryConstants.TOKEN_PREFIX)){
             return header.split(" ")[1];
         }
         return null;

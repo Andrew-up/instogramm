@@ -67,21 +67,10 @@ public class AuthController {
         if (!ObjectUtils.isEmpty(listErrors)) {
             return listErrors;
         }
-
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
-
-
-
-
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = SecutiryConstants.TOKEN_PREFIX+ jwtProvider.generateToken(authentication);
         return  ResponseEntity.ok(new JWTSuccessResponse(true,jwt));
-
-
     }
-
 }

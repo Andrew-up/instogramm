@@ -114,8 +114,6 @@ public class ImageService {
             LOG.error("Cannot compress image");
 
         }
-
-
         return byteArrayOutputStream.toByteArray();
 
     }

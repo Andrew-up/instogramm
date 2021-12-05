@@ -30,7 +30,7 @@ public class ConfigUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(eRole -> new SimpleGrantedAuthority(eRole.name()))
                 .collect(Collectors.toList());
-        System.out.println("user: "+user);
+        System.out.println("user: "+ user.getUsername());
         return new User(
                 user.getId(),
                 user.getUsername(),
