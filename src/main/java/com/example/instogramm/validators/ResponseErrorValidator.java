@@ -21,9 +21,7 @@ public class ResponseErrorValidator {
                 for (ObjectError error: bindingResult.getAllErrors()){
                     errorMap.put(error.getCode(),error.getDefaultMessage());
                 }
-
             }
-
             for(FieldError error:bindingResult.getFieldErrors()){
                 errorMap.put(error.getField(),error.getDefaultMessage());
             }

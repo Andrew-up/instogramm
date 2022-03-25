@@ -51,12 +51,9 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest, BindingResult bindingResult) {
         ResponseEntity<Object> listErrors = responseErrorValidator.mappedValidatorService(bindingResult);
-
         if (!ObjectUtils.isEmpty(listErrors)) return listErrors;
-
         userService.createUser(signupRequest);
         return ResponseEntity.ok((new MessageResponse("Registration successfully completed")));
-
     }
 
 
